@@ -1,0 +1,11 @@
+# M1（Tesseract 経路）の最小依存。GPU エンジンは M3 で extras 経由に分ける。
+numpy>=1.24
+opencv-python>=4.8
+pyyaml>=6.0
+pytesseract>=0.3.10
+
+# 評価（M2）
+python-Levenshtein>=0.21
+
+# 開発
+pytest>=7.4

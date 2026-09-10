@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+db/*.sqlite
+db/*.sqlite-journal
+data/game/images/*.png
+out/
+.pytest_cache/

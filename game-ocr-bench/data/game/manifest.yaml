@@ -1,0 +1,39 @@
+# データセット manifest（仕様書 §2 / §6.1）。
+# 収集条件・アノテーション規約・タグ定義をここに集約する。
+
+dataset: game
+target_language: en
+initial_count: 30           # §2.3 まず 30 枚。font_style を最優先で散らす
+
+# アノテーション規約（§6.1）
+annotation_rules:
+  - 大文字小文字は画面のとおりに記録（strict 評価の前提）
+  - HUD の数値・記号は表示のまま（"HP 120/200", "1,250 G", "Lv.42"）
+  - 装飾ロゴ・エフェクト文字・ぶれた文字は GT に含めない
+  - 判読不能文字は "■" 1 文字。評価時は両側とも対象外
+  - 読み順は領域単位。reading_order に明示的に記録する
+  - 半透明で背景が透けている文字は含める（overlay タグを付与）
+
+# 条件タグ定義（§2.2）。samples.meta に JSON で格納する。
+tags:
+  text_type: [hud, dialogue, menu, tooltip, map_label, damage]
+  font_style: [pixel, sans, serif, fantasy, handwritten_style]  # 最重要タグ
+  outline: [none, thin, thick]
+  shadow: [true, false]
+  overlay: [none, semi_transparent, on_texture]
+  contrast: [high, mid, low]
+  text_color: [white, yellow, red, multi]
+  resolution: [1080p, 1440p, 4k]
+  density: [sparse, dense]
+
+# font_style を最優先で散らす初期配分の目安（§2.3）
+initial_distribution:
+  pixel: 8
+  sans: 8
+  serif: 6
+  fantasy: 8
+
+# 監査（§6 注意）: fantasy / pixel を優先的に 20% 抜き取り監査
+audit:
+  sample_rate: 0.2
+  priority_font_styles: [fantasy, pixel]

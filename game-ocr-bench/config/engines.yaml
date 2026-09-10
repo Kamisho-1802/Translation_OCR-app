@@ -1,0 +1,27 @@
+# エンジン別パラメータ（仕様書 §3.2）
+tesseract:
+  base:
+    oem: 3
+    load_system_dawg: 0      # 辞書オフ。造語を実在語に矯正させない
+    load_freq_dawg: 0
+  psm_by_mode:
+    fullscreen: 11           # sparse text（散在するテキスト）
+    roi_line: 7              # 単一行
+    roi_block: 6             # 均一ブロック
+  char_whitelist: null       # HUD 数値限定の実験時のみ使用
+
+easyocr:
+  base: {gpu: true, paragraph: false, decoder: greedy}
+  sweep:
+    text_threshold: [0.5, 0.7]
+    low_text: [0.3, 0.4]
+    mag_ratio: [1.0, 2.0]      # 内部拡大率。小さい HUD 文字に効く
+    contrast_ths: [0.1, 0.3]
+
+paddleocr:
+  base: {lang: en, use_angle_cls: true, use_gpu: true}
+  sweep:
+    det_db_thresh: [0.3, 0.5]
+    det_db_box_thresh: [0.5, 0.6]
+    det_db_unclip_ratio: [1.6, 2.0, 2.5]   # 縁取り文字は大きめが効く傾向
+    det_limit_side_len: [960, 1536]

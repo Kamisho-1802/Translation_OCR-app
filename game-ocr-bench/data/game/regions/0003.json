@@ -1,0 +1,21 @@
+{
+  "image": "0003.png",
+  "reading_order": [
+    "r1"
+  ],
+  "regions": [
+    {
+      "id": "r1",
+      "box": [
+        736,
+        370,
+        452,
+        152
+      ],
+      "text": "\tBut ain't every story better with a little twist?",
+      "text_type": "hud",
+      "proper_nouns": []
+    }
+  ],
+  "meta": {}
+}

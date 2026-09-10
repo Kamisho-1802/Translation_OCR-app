@@ -1,0 +1,21 @@
+{
+  "image": "0004.png",
+  "reading_order": [
+    "r1"
+  ],
+  "regions": [
+    {
+      "id": "r1",
+      "box": [
+        374,
+        732,
+        1216,
+        288
+      ],
+      "text": "Damn... I dunno what this axe is, but it looks awesome!",
+      "text_type": "hud",
+      "proper_nouns": []
+    }
+  ],
+  "meta": {}
+}

@@ -1,0 +1,21 @@
+{
+  "image": "0001.png",
+  "reading_order": [
+    "r1"
+  ],
+  "regions": [
+    {
+      "id": "r1",
+      "box": [
+        362,
+        738,
+        1152,
+        180
+      ],
+      "text": "But it didn't interest me, so you can take it.",
+      "text_type": "hud",
+      "proper_nouns": []
+    }
+  ],
+  "meta": {}
+}

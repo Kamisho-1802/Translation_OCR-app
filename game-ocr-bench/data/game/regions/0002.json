@@ -1,0 +1,21 @@
+{
+  "image": "0002.png",
+  "reading_order": [
+    "r1"
+  ],
+  "regions": [
+    {
+      "id": "r1",
+      "box": [
+        350,
+        744,
+        1164,
+        198
+      ],
+      "text": "... don't think I'm serious? Check the price tag!",
+      "text_type": "hud",
+      "proper_nouns": []
+    }
+  ],
+  "meta": {}
+}

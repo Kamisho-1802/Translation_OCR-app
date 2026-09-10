@@ -1,0 +1,15 @@
+# 正規化プロファイル（仕様書 §4.5）。eval 時に適用する。
+# strict を主、loose を参考として併記する。
+strict:
+  nfkc: true
+  casefold: false        # 大文字小文字を区別する（ゲーム UI の ALL CAPS は意味を持つ）
+  strip_whitespace: false
+  remove_symbols: false
+  collapse_spaces: true  # 連続空白の潰しのみ（描画差の吸収）
+
+loose:
+  nfkc: true
+  casefold: true         # 小文字化
+  strip_whitespace: true # 空白除去
+  remove_symbols: true   # 記号除去
+  collapse_spaces: true

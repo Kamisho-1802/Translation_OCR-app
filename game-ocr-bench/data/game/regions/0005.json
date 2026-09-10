@@ -1,0 +1,21 @@
+{
+  "image": "0005.png",
+  "reading_order": [
+    "r1"
+  ],
+  "regions": [
+    {
+      "id": "r1",
+      "box": [
+        770,
+        494,
+        444,
+        84
+      ],
+      "text": "C:¥Program Files (x86)¥steam¥steamapps¥Street Fighter6¥StreetFighter6.exe D3D12CreateDevice.Filed, Please restart your computer.",
+      "text_type": "hud",
+      "proper_nouns": []
+    }
+  ],
+  "meta": {}
+}

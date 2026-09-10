@@ -1,0 +1,51 @@
+# 前処理条件（仕様書 §3.3）。
+# presets: 名前付きの前処理チェーン。run --preprocess raw,tuned のように参照する。
+# 各ステップは op 名のみ、または {op, params} で指定する。
+
+presets:
+  raw:
+    - raw
+
+  # 汎用の「そこそこ効く」条件。全シーンの代表条件（§12 で raw/tuned に集約）。
+  tuned:
+    - auto_invert
+    - {op: upscale_lanczos, params: {scale: 2.0}}
+    - gray_otsu
+
+  # ピクセルフォント専用。最近傍拡大で潰さない（§3.3 / §12）。
+  pixel:
+    - auto_invert
+    - {op: upscale_nearest, params: {scale: 3.0}}
+    - gray_otsu
+
+  # 半透明パネル上の文字向け。
+  panel:
+    - clahe
+    - {op: upscale_lanczos, params: {scale: 2.0}}
+    - gray_adaptive
+
+  # 縁取りが強い文字向け。
+  outline:
+    - auto_invert
+    - {op: upscale_lanczos, params: {scale: 2.0}}
+    - gray_otsu
+    - {op: morph_close, params: {ksize: 2}}
+
+  # 色キーイング（ゲーム特化・§3.3）。text_color タグ別に効く場面が明確な特化条件。
+  ck_white:
+    - {op: color_key, params: {preset: white}}
+    - {op: upscale_lanczos, params: {scale: 2.0}}
+  ck_yellow:
+    - {op: color_key, params: {preset: yellow}}
+    - {op: upscale_lanczos, params: {scale: 2.0}}
+  ck_red:
+    - {op: color_key, params: {preset: red}}
+    - {op: upscale_lanczos, params: {scale: 2.0}}
+
+# スイープで単発 op を振るときに使う個別 op の既定パラメータ（参考）。
+op_defaults:
+  upscale_lanczos: {scale: 2.0}
+  upscale_nearest: {scale: 3.0}
+  gray_adaptive: {block_size: 31, c: 10}
+  clahe: {clip: 2.0, grid: 8}
+  morph_close: {ksize: 2}

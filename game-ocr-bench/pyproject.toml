@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "game-ocr-bench"
+version = "0.1.0"
+description = "ゲーム画面 OCR 精度比較アプリ（Tesseract / EasyOCR / PaddleOCR）"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "opencv-python>=4.8",
+  "pyyaml>=6.0",
+  "pytesseract>=0.3.10",
+]
+
+[project.optional-dependencies]
+# M3 で GPU エンジンを追加。torch は環境（CUDA 版）に合わせて別途導入する。
+easyocr = ["easyocr>=1.7"]
+paddle = ["paddleocr>=2.7", "paddlepaddle-gpu"]
+ui = ["streamlit>=1.30", "pandas>=2.0"]
+eval = ["python-Levenshtein>=0.21"]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+ocr-bench = "ocr_bench.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ocr_bench*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
