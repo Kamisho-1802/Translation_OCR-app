@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# データ（SQLite DB など）
+data/
+
+# Node
+node_modules/
+dist/
+*.local

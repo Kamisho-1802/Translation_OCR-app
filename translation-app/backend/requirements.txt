@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+requests
+Pillow
+pytesseract
+easyocr
+manga-ocr            # 日本語特化・縦書き対応のOCR（看板向け）
+transformers<5       # manga-ocr のモデルは .bin 形式のみで、transformers 5系 + torch 2.5 では読めない
+# torch は easyOCR 依存。GPU 版は環境に合わせて別途導入する
+# (本環境では conda env `ocrbench` の torch 2.5.1+cu121 を system-site-packages 経由で利用)

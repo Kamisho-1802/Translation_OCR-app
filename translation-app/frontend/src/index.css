@@ -1,0 +1,442 @@
+:root {
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --border: #d9dce1;
+  --text: #1c1e21;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-weak: #e8efff;
+  --danger: #dc2626;
+
+  font-family: system-ui, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+    Meiryo, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* --- レイアウト --- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  padding: 0 16px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-title {
+  font-weight: 600;
+}
+
+.hamburger {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.hamburger:hover {
+  background: var(--bg);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  width: 240px;
+  height: 100%;
+  padding: 12px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px 12px;
+  font-weight: 600;
+}
+
+.drawer-close {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.drawer-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.drawer-link:hover {
+  background: var(--bg);
+}
+
+.drawer-link.active {
+  background: var(--accent-weak);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px 64px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 8px 0 20px;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 24px 0 10px;
+}
+
+/* --- パネル・トグル --- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toggle-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.toggle-buttons {
+  display: flex;
+}
+
+.toggle {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 7px 14px;
+  font-size: 14px;
+}
+
+.toggle:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.toggle:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.toggle + .toggle {
+  border-left: none;
+}
+
+.toggle.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.fixed-value {
+  padding: 7px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* --- フォーム --- */
+textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: 10px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+input[type='file'] {
+  font: inherit;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 8px;
+}
+
+.secondary {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 18px;
+  border-radius: 8px;
+}
+
+.danger {
+  background: var(--panel);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* --- メッセージ --- */
+.error {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border: 1px solid #f3c2c2;
+  border-radius: 8px;
+  background: #fdeaea;
+  color: #991b1b;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.notice {
+  margin: 12px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* --- ブロック（元/訳ペア） --- */
+.block {
+  margin-bottom: 12px;
+}
+
+.block-index {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pair-cell {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+/* --- 履歴・カード --- */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--accent-weak);
+  color: var(--accent);
+  border: 1px solid #cfe0ff;
+}
+
+.badge.gray {
+  background: #eef0f3;
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+.timestamp {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.card-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+/* --- OCR結果の選択カード --- */
+.panel.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-weak);
+}
+
+.engine-pick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.engine-pick .engine-name {
+  font-weight: 600;
+}
+
+.engine-pick .notice {
+  margin: 0;
+}
+
+/* --- 文字検出: 元画像を見ながら手直しするための2カラム --- */
+.detection-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 40%) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .detection-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-pane {
+  /* 抽出結果をスクロールしても元画像が画面に残るようにする */
+  position: sticky;
+  top: 64px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.image-pane img {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 6px;
+  cursor: zoom-in;
+}
+
+.image-pane .notice {
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .image-pane img {
+    max-height: 40vh;
+  }
+}
+
+.preview-thumb {
+  display: block;
+  max-width: 100%;
+  max-height: 240px;
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.85);
+  cursor: zoom-out;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
